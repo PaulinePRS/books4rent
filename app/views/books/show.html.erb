@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   <div class ="d-flex justify-content-around align-items-center">
     <div class ="w-50">
       <h1><%= @book.title %></h1>
@@ -6,12 +6,41 @@
       <p><%= @book.published_date %></p>
       <p><%= @book.description %></p>
     </div>
-      <div class="" >
+    <div class="" >
         <p><%= @book.rating %></p>
         <p><%= @book.publisher %></p>
         <p><%= @book.category %></p>
         <p><%= @book.lender %></p>
     </div>
   </div>
-  <%= link_to "Back to all books", root_path %>
+  <div class="reviews">
+    <% @book.reviews.each do |review| %>
+    <p>
+      <%= review.content %>
+    </p>
+    <% end %>
+  </div>
+
+  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
+    Add a Review
+  </button>
+
+  <%= link_to "Back to all books", books_path %>
+</div>
+
+
+<div class="modal fade" id="AddReview" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalTitle">Add a new Review to <%= @book.title %></h5>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@book, Review.new] do |f| %>
+        <%= f.input :content %>
+        <%= f.button :submit, class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
