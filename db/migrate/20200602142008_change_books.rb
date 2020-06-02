@@ -4,5 +4,6 @@ class ChangeBooks < ActiveRecord::Migration[6.0]
       t.remove :series
       t.text :description
       t.rename :publishing_year, :published_date
+    end
   end
 end
