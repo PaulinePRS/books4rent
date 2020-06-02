@@ -1,11 +1,12 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all
+    @books = policy_scope(Book).order(title: :asc)
   end
 
   def show
     @book = Book.find(params[:id])
+    authorize @book
   end
 
   def new
