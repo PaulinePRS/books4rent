@@ -1,0 +1,11 @@
+
+<% @books.each do |book| %>
+<h1> <%= book.title %> </h1>
+<h2> <%= book.category %> </h2>
+<h2> <%= book.author %> </h2>
+<h2> <%= book.rating %> </h2>
+<%= link_to "Voir les détails du livre", book_path(book), class: 'card-link' %>
+
+<% end %>
+
+
