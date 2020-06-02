@@ -1,0 +1,17 @@
+<div class="container">
+  <div class ="d-flex justify-content-around align-items-center">
+    <div class ="w-50">
+      <h1><%= @book.title %></h1>
+      <h2><%= @book.author %></h2>
+      <p><%= @book.published_date %></p>
+      <p><%= @book.description %></p>
+    </div>
+      <div class="" >
+        <p><%= @book.rating %></p>
+        <p><%= @book.publisher %></p>
+        <p><%= @book.category %></p>
+        <p><%= @book.lender %></p>
+    </div>
+  </div>
+  <%= link_to "Back to all books", root_path %>
+</div>
