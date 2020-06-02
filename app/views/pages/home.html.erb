@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1574051411157-1a802b6801fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
+
+  <div class="container" >
+    <div class="banner-form">
+      <h1>Location de livres en particuliers.</h1>
+      <div class="searchbar">
+        <form action="/books" method="get" class="form-inline my-2 my-lg-0"> 
+          <input class="form-control mr-sm-2 element" placeholder="ex : Harry Potter, Musso" name="query" type="search" aria-label="Search"> 
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Chercher</button> 
+        </form> 
+      </div>
+    </div>
+  </div>
+
+</div>
+
