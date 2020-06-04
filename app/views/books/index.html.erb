@@ -6,7 +6,9 @@
     <h2> <%= book.author %> </h2>
     <h2> <%= book.rating %> </h2>
     <%= link_to "Voir les détails du livre", book_path(book), class: 'card-link' %>
+    <% if policy(book).update? %>
     <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>    Edit <% end %>
+    <% end %>
   </div>
   <% end %>
 </div>
