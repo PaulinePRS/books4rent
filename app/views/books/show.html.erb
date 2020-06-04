@@ -5,6 +5,7 @@
       <h2><%= @book.author %></h2>
       <p><%= @book.published_date %></p>
       <p><%= @book.description %></p>
+      <%= link_to "Retour à la liste", books_path %>
     </div>
     <div class="" >
         <p><%= @book.rating %></p>
@@ -14,22 +15,19 @@
         <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
           <i class="fa fa-trash destroy_dose"></i>
         <% end %>
+        <div class="reviews">
+        <% @book.reviews.each do |review| %>
+        <p>
+          <%= review.content %>
+        </p>
+        <% end %>
+      </div>
 
+      <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
+        Ajouter un commentaire
+      </button>
     </div>
   </div>
-  <div class="reviews">
-    <% @book.reviews.each do |review| %>
-    <p>
-      <%= review.content %>
-    </p>
-    <% end %>
-  </div>
-
-  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
-    Ajouter un commentaire
-  </button>
-
-  <%= link_to "Retour à la liste", books_path %>
 </div>
 
 
