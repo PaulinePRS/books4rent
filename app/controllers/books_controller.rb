@@ -26,6 +26,7 @@ class BooksController < ApplicationController
   end
 
 
+
   def edit
     @book = Book.find(params[:id])
     authorize @book
@@ -39,6 +40,13 @@ class BooksController < ApplicationController
     else
       render :edit
     end
+    authorize @book
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path(@book)
     authorize @book
   end
 
