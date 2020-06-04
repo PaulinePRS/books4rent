@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, foreign_key: :lender_id
+  has_many :bookings, foreign_key: :lender_id
 end
