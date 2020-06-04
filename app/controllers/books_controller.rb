@@ -25,12 +25,31 @@ class BooksController < ApplicationController
     authorize @book
   end
 
+
+
+  def edit
+    @book = Book.find(params[:id])
+    authorize @book
+  end
+
+
+  def update
+     @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Your book was successfully updated.'
+    else
+      render :edit
+    end
+    authorize @book
+  end
+
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path(@book)
     authorize @book
   end
+
 
   private
 
