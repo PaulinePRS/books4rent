@@ -11,6 +11,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    authorize @book
   end
 
   def create
@@ -21,6 +22,7 @@ class BooksController < ApplicationController
     else
       render :new
     end
+    authorize @book
   end
 
   private
