@@ -25,6 +25,15 @@ class BooksController < ApplicationController
     authorize @book
   end
 
+  def update
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Your book was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+
   private
 
   def book_params
