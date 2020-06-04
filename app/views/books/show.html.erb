@@ -11,6 +11,10 @@
         <p><%= @book.publisher %></p>
         <p><%= @book.category %></p>
         <p><%= @book.lender %></p>
+        <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
+          <i class="fa fa-trash destroy_dose"></i>
+        <% end %>
+
     </div>
   </div>
   <div class="reviews">
@@ -22,10 +26,10 @@
   </div>
 
   <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
-    Add a Review
+    Ajouter un commentaire
   </button>
 
-  <%= link_to "Back to all books", books_path %>
+  <%= link_to "Retour à la liste", books_path %>
 </div>
 
 
