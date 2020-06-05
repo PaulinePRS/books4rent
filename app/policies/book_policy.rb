@@ -15,14 +15,14 @@ class BookPolicy < ApplicationPolicy
 
 
   def update?
-    true
+    record.lender == user
   end
 
 
 
 
   def destroy?
-    true
+    record.lender == user
   end
 
 
