@@ -23,14 +23,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto align-items-center">
+          <li class="nav-item">
+            <%= link_to "Prêter un livre", books_path, class:"btn btn-sm btn-outline-primary mr-2" %>
+          </li>
           <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Books", books_path, class: "nav-link"%>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="btn btn-sm btn-outline-primary mr-3">Prêter un livre</a>
+            <%= link_to "Books", books_path, class: "nav-link mr-2"%>
           </li>
           <li class="nav-item dropdown">
             <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
