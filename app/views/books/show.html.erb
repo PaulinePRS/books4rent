@@ -20,9 +20,9 @@
           <%= review.content %>
           <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
           <% if policy(review).update? %>
-             <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
-              Modifier votre commentaire
-            </button>
+             <a type="button" class="link" data-toggle="modal" data-target="#EditReview<%= review.id %>">
+              <i class="fas fa-edit"></i>
+            </a>
             <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
           <% end %>
         </p>
@@ -40,7 +40,7 @@
         <p>Category: <%= @book.category %></p>
         <p>Lender: <%= @book.lender.first_name %></p>
         <P><%=  @book.address %> </P>
-        
+
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
