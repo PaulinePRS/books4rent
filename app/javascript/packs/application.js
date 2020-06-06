@@ -50,7 +50,5 @@ document.addEventListener('turbolinks:load', () => {
 
 const addressField = document.getElementById('address-field');
 
-console.log(addressField);
-
 addressField.addEventListener("click", fillNewFormWithCurrentPosition);
 
