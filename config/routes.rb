@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :books do
     resources :reviews, only: [:new, :create]
+    resources :bookings, only: [:new, :create]
   end
-  resources :reviews, only: [:destroy, :edit]
+  resources :reviews, only: [:destroy, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
