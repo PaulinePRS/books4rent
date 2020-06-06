@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @booking = Booking.new
     authorize @book
   end
 

@@ -1,11 +1,13 @@
 <div class="container mt-3">
   <div class ="d-flex justify-content-around align-items-center">
     <div class ="w-50">
-      <h1><%= @book.title %></h1>
-      <h2><%= @book.author %></h2>
-      <p><%= @book.published_date %></p>
-      <p><%= @book.description %></p>
-      <div class="reviews">
+      <div class="book-show-card">
+        <h1><%= @book.title %></h1>
+        <h2><%= @book.author %></h2>
+        <p><%= @book.published_date %></p>
+        <p><%= @book.description %></p>
+      </div>
+      <div class="book-show-card">
         <% @book.reviews.each do |review| %>
         <p>
           <%= review.content %>
@@ -18,15 +20,24 @@
       <%= link_to "Retour à la liste", books_path %>
     </div>
     <div class="" >
+      <div class="book-show-card">
         <p><%= @book.rating %></p>
         <p><%= @book.publisher %></p>
         <p><%= @book.category %></p>
-        <p><%= @book.lender %></p>
+        <p><%= @book.lender.first_name %></p>
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
           <% end %>
         <% end %>
+      </div>
+      <div class="book-show-card">
+        <%= simple_form_for [@book, @booking] do |f|%>
+        <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_start"} %>
+        <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_end"} %>
+        <%= f.button :submit, "Réserver" ,class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
 
       <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
         Ajouter un commentaire
