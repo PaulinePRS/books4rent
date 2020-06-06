@@ -4,10 +4,13 @@
       <div class="col-12 col-md-6 col-lg-3">
         <div class="flat-card d-flex flex-column card-style">
           <h1> <%= book.title %> </h1>
+          <h2> <%= book.category %> </h2>
           <h2> <%= book.author %> </h2>
-          <p> <%= book.category %> </p>
-          <p> <%= book.rating %> ⭐️ </p>
-          <%= link_to "Voir le livre", book_path(book), class: 'card-link' %>
+          <h2> <%= book.rating %> </h2>
+          <%= link_to "Voir les détails du livre", book_path(book), class: 'card-link' %>
+          <% if policy(book).update? %>
+          <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>    Edit <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>

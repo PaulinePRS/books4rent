@@ -12,4 +12,18 @@ class BookPolicy < ApplicationPolicy
   def create?
     true
   end
+
+
+  def update?
+    record.lender == user
+  end
+
+
+
+
+  def destroy?
+    record.lender == user
+  end
+
+
 end
