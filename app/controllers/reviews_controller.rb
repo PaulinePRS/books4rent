@@ -31,6 +31,8 @@ class ReviewsController < ApplicationController
   def update
     authorize @review
     @review.update(review_params)
+
+    redirect_to book_path(@review.book)
   end
 
   private
