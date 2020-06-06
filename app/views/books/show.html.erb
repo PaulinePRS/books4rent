@@ -25,6 +25,7 @@
         <p><%= @book.publisher %></p>
         <p><%= @book.category %></p>
         <p><%= @book.lender.first_name %></p>
+        <P><%=  @book.address %> </P>
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
