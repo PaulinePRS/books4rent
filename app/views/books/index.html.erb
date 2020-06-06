@@ -1,22 +1,32 @@
 <div class="container mt-3">
   <div class="row">
+
     <% @books.each do |book| %>
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="flat-card d-flex flex-column card-style">
-          <h1> <%= book.title %> </h1>
-          <h2> <%= book.category %> </h2>
-          <h2> <%= book.author %> </h2>
-          <h2> <%= book.rating %> </h2>
-          <%= link_to "Voir les détails du livre", book_path(book), class: 'card-link' %>
-          <% if policy(book).update? %>
-          <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>    Edit <% end %>
-          <% end %>
+        <div class="card-style">
+          <div class="cover-style">
+            <%= link_to book_path(book) do %>
+              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
+              </div>
+              <h1> <%= book.title %></h1>
+              <% if policy(book).update? %>
+
+                <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>  Edit <% end %>
+
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+
+  <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers= "<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
+  </div>
 </div>
-
-
 
 
