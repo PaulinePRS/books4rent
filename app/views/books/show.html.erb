@@ -1,16 +1,24 @@
 <div class="container mt-3">
-  <div class ="d-flex justify-content-around align-items-center">
-    <div class ="w-50">
+  <div class="row">
+    <div class="col-8 d-flex flex-column">
       <div class="book-show-card">
-        <h1><%= @book.title %></h1>
-        <h2><%= @book.author %></h2>
-        <p><%= @book.published_date %></p>
+        <div class="d-flex justify-content-between">
+          <div class="mr-3">
+          <%= cl_image_tag @book.photo.key, height: 170, crop: :fill %>
+          </div>
+          <div>
+            <h1><%= @book.title %></h1>
+            <h2><%= @book.author %></h2>
+            <p><%= @book.published_date %></p>
+          </div>
+        </div>
         <p><%= @book.description %></p>
       </div>
       <div class="book-show-card">
         <% @book.reviews.each do |review| %>
         <p>
           <%= review.content %>
+          <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
           <% if policy(review).update? %>
              <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
               Modifier votre commentaire
@@ -19,15 +27,17 @@
           <% end %>
         </p>
         <% end %>
+      <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
+        Ajouter un commentaire
+      </button>
       </div>
-      <%= link_to "Retour à la liste", books_path %>
     </div>
-    <div class="" >
+    <div class="col-4 d-flex flex-column">
       <div class="book-show-card">
-        <p><%= @book.rating %></p>
-        <p><%= @book.publisher %></p>
-        <p><%= @book.category %></p>
-        <p><%= @book.lender.first_name %></p>
+        <p>Ratings: <%= @book.rating %></p>
+        <p>Publisher: <%= @book.publisher %></p>
+        <p>Category: <%= @book.category %></p>
+        <p>Lender: <%= @book.lender.first_name %></p>
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
@@ -41,10 +51,6 @@
         <%= f.button :submit, "Réserver" ,class: "btn btn-outline-dark" %>
         <% end %>
       </div>
-
-      <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
-        Ajouter un commentaire
-      </button>
     </div>
   </div>
 </div>
