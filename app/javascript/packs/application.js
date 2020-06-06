@@ -40,7 +40,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initAutocomplete();
   initFlatPicker();
-  fillNewFormWithCurrentPosition();
 
   const map = document.getElementById('map');
 
@@ -49,4 +48,9 @@ document.addEventListener('turbolinks:load', () => {
   }
 });
 
+const addressField = document.getElementById('address-field');
+
+console.log(addressField);
+
+addressField.addEventListener("click", fillNewFormWithCurrentPosition);
 
