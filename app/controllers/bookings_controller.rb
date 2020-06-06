@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.save
 
-    redirect_to book_path(@book)
+    redirect_to book_path(@book), notice: "You've successfully booked #{@book.title}"
 
   end
 
