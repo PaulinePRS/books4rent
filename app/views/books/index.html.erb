@@ -9,6 +9,7 @@
               <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
               </div>
               <h1> <%= book.title %></h1>
+              <h1> <%= book.rating %> ⭐️</h1>
               <% if policy(book).update? %>
 
                 <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>  Edit <% end %>

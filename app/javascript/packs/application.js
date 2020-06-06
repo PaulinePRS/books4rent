@@ -7,7 +7,6 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-import "../plugins/flatpickr"
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -28,11 +27,20 @@ import "bootstrap";
 
 import { initMapbox } from '../plugins/init_mapbox';
 
+import { initFlatPicker } from '../plugins/flatpickr'
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  initMapbox();
+   initFlatPicker()
+
+  const map = document.getElementById('map');
+
+  if(map) {
+    initMapbox();
+  }
 });
+
 
