@@ -12,7 +12,10 @@
         <p>
           <%= review.content %>
           <% if policy(review).update? %>
-          <%= link_to edit_review_path(review), data: { confirm: "Update review?" } do %>    Edit <% end %>
+             <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
+              Modifier votre commentaire
+            </button>
+            <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
           <% end %>
         </p>
         <% end %>
@@ -46,8 +49,9 @@
   </div>
 </div>
 
+<%= render "reviews/new_form_modal", book: @book, review: Review.new, id: "AddReview" %>
 
-<div class="modal fade" id="AddReview" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+<!-- <div class="modal fade" id="AddReview" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -61,4 +65,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
