@@ -21,7 +21,7 @@
           <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
           <% if policy(review).update? %>
              <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
-              Modifier votre commentaire
+              <i> 📝 </i>
             </button>
             <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
           <% end %>
@@ -51,7 +51,7 @@
         <%= simple_form_for [@book, @booking] do |f|%>
         <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_start"} %>
         <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_end"} %>
-        <%= f.button :submit, "Réserver" ,class: "btn btn-outline-dark" %>
+        <%= f.button :submit, "Réserver " ,class: "btn btn-outline-dark" %>
         <% end %>
       </div>
     </div>
