@@ -6,7 +6,7 @@
   <%= f.input :publisher %>
   <%= f.input :category %>
   <%= f.input :description %>
-  <%= f.input :address,label: "Location where to get the book? 📌"  %>
+  <%= f.input :address,label: "Location where to get the book? 📌", input_html: { id: 'address-field' }  %>
   <%= f.input :photo, label: :Cover, as: :file %>
   <%= f.button :submit, 'Lend book', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
 <% end %>
