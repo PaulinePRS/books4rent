@@ -5,7 +5,7 @@ class BooksController < ApplicationController
       key = "%#{params[:query]}%"
       @books = policy_scope(Book).where("title ILIKE :search OR author ILIKE :search OR description ILIKE :search", search: key).order(title: :asc)
     else
-      @books = Book.geocoded # returns flats with coordinates
+      @books = policy_scope(Book).geocoded # returns flats with coordinates
 
       @markers = @books.map do |book|
         {

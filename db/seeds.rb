@@ -5,9 +5,13 @@
 # #
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
-# require 'json'
-# require 'open-uri'
-# require 'faker'
+require 'json'
+require 'open-uri'
+require 'faker'
+
+Review.destroy_all
+Book.destroy_all
+User.destroy_all
 
 users = [
   {email: 'pauline@lewagon.org', first_name: 'Pauline', last_name: 'Paris', address: Faker::Address.full_address, password: 'pauline'},
@@ -86,6 +90,9 @@ while i < isbn.size
   publisher = hash_book['items'].first['volumeInfo']['publisher'] || "undefined"
   category = hash_book['items'].first['volumeInfo']['categories'].first || "undefined"
 
+  # Create fake address:
+  address = ['1 rue ravignan, 75018 PARIS', '31 rue de citeaux, 75012 PARIS', '20 avenue du president kennedy, 75016, PARIS']
+
   # initialize and save book in the db
 
   book = Book.create!(
@@ -96,7 +103,8 @@ while i < isbn.size
     rating: rating,
     publisher: publisher,
     category: category,
-    lender: User.all.sample
+    lender: User.all.sample,
+    address: address.sample
   )
 
   # attach cover to book
@@ -123,12 +131,12 @@ while i < isbn.size
         rating: #{rating}
         publisher: #{publisher}
         category: #{category}
-        lender: #{book.lender.email}"
+        lender: #{book.lender.email}
+        address: #{book.address}"
   puts "____________________________________________________________"
 end
 
 puts "Cleaning Review database ..."
-Review.destroy_all
 
 Book.all.each do |book|
   (5..10).to_a.sample.times do
