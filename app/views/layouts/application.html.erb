@@ -14,7 +14,7 @@
   <body>
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
         <%= link_to root_path, class: "navbar-brand align-items-center" do %>
-          <i class="fas fa-book-open"> Biblio</i>
+          <i class="fas fa-bookmark">  Biblio  </i>
         <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,11 +26,11 @@
         <ul class="navbar-nav mr-auto align-items-center">
           <li class="nav-item">
             <div>
-              <%= link_to "Lend a book", new_book_path, class:"btn btn-sm btn-outline-dark mr-2" %>
+              <%= link_to " 📕 Lend a book ", new_book_path, class:"btn btn-sm btn-outline-dark mr-2" %>
             </div>
           </li>
           <li class="nav-item mr-4">
-            <%= link_to "Top Books", books_path, class: "nav-link"%>
+            <%= link_to " 👌 Top Books ", books_path, class: "nav-link"%>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag("pauline.jpg", id: "navbarDropdown", class: "avatar dropdown-toggle", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}) %>

@@ -12,7 +12,7 @@
             <p><%= @book.published_date %></p>
           </div>
         </div>
-        <p><%= @book.description %></p>
+        <p> 👉 <%= @book.description %></p>
       </div>
       <div class="book-show-card">
         <% @book.reviews.each do |review| %>
@@ -21,7 +21,7 @@
           <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
           <% if policy(review).update? %>
              <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
-              Modifier votre commentaire
+              <i> 📝 </i>
             </button>
             <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
           <% end %>
@@ -35,12 +35,12 @@
     <div class="col-4 d-flex flex-column">
       <div class="book-show-card">
 
-        <p>Ratings: <%= @book.rating %></p>
-        <p>Publisher: <%= @book.publisher %></p>
-        <p>Category: <%= @book.category %></p>
-        <p>Lender: <%= @book.lender.first_name %></p>
-        <P><%=  @book.address %> </P>
-        
+        <p> <strong> ⭐️ Ratings : </strong> <%= @book.rating %></p>
+        <p> <strong> 📕 Publisher : </strong> <%= @book.publisher %></p>
+        <p> <strong> 📚 Category : </strong> <%= @book.category %></p>
+        <p> <strong> 💁 Lender : </strong> <%= @book.lender.first_name %></p>
+        <P> <strong> 📌 Where to pick the book :</strong> <%=  @book.address %> </P>
+
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
@@ -51,7 +51,7 @@
         <%= simple_form_for [@book, @booking] do |f|%>
         <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_start"} %>
         <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_end"} %>
-        <%= f.button :submit, "Réserver" ,class: "btn btn-outline-dark" %>
+        <%= f.button :submit, "Réserver " ,class: "btn btn-outline-dark" %>
         <% end %>
       </div>
     </div>
