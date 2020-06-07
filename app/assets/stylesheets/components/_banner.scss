@@ -9,6 +9,7 @@
   margin: 0;
   color: black;
   font-size: 28px;
+  text-align: center;
 }
 
 .banner p {
@@ -29,10 +30,13 @@
     background: #fff;
     border-radius: 4px;
     padding: 25px;
-    max-width: 420px;
-    max-height: 450px;
+    max-width: 470px;
+    height: 200px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .searchbar {
-  margin: 10px 0 ;
+  margin: 10px 0;
+  justify-content: center;
 }
+
