@@ -21,10 +21,10 @@ const fetchBooks = () => {
   const button = document.getElementById("autocomplete");
   if(button) {
     button.addEventListener("click", () => {
-      const isbnInput = document.getElementById('isbn');
-      const isbnValue = isbnInput.value;
-      console.log(isbnValue);
-      const url = `https://www.googleapis.com/books/v1/volumes?q=${isbnValue}&orderBy=relevance&maxResults=1&key=AIzaSyAjUjwm8lIrso2D-367SXkg3Kcz3Z_hKlU`;
+      const bookSearchInput = document.getElementById('book-search');
+      const bookSearchValue = bookSearchInput.value;
+      console.log(bookSearchValue);
+      const url = `https://www.googleapis.com/books/v1/volumes?q=${bookSearchValue}&orderBy=relevance&maxResults=1&key=AIzaSyAjUjwm8lIrso2D-367SXkg3Kcz3Z_hKlU`;
       console.log(url);
       fetch(url)
         .then(response => response.json())
