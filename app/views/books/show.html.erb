@@ -4,27 +4,31 @@
       <div class="book-show-card">
         <div class="d-flex justify-content-between">
           <div class="mr-3">
-          <%= cl_image_tag @book.photo.key, height: 170, crop: :fill %>
+          <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
           </div>
           <div>
-            <h1><%= @book.title %></h1>
-            <h2><%= @book.author %></h2>
+            <h1 class="font-weight-bold"><%= @book.title %></h1>
+            <h2 class="font-italic"><%= @book.author %></h2>
             <p><%= @book.published_date %></p>
           </div>
         </div>
-        <p> 👉 <%= @book.description %></p>
+        <p class="pt-3"> 👉 <%= @book.description %></p>
       </div>
       <div class="book-show-card">
         <% @book.reviews.each do |review| %>
         <p>
-          <%= review.content %>
-          <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
-          <% if policy(review).update? %>
-             <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#EditReview<%= review.id %>">
-              <i> 📝 </i>
-            </button>
-            <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
-          <% end %>
+
+          <div class="d-flex flex-column">
+            <%= review.content %>
+            <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
+            <% if policy(review).update? %>
+               <button type="button" class="m-3 btn btn-light border-bottom data-toggle="modal" data-target="#EditReview<%= review.id %>">
+                <i> Modifier 📝 </i>
+              </button>
+              <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
+            <% end %>
+          </div>
+
         </p>
         <% end %>
       <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
@@ -47,12 +51,19 @@
           <% end %>
         <% end %>
       </div>
+
       <div class="book-show-card">
         <%= simple_form_for [@book, @booking] do |f|%>
         <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_start"} %>
         <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_end"} %>
-        <%= f.button :submit, "Réserver " ,class: "btn btn-outline-dark" %>
+        <%= f.button :submit, "Réserver " ,class: "btn btn-dark" %>
         <% end %>
+      </div>
+
+      <div class="book-show-card" id="map" style= "width: 100%; height: 300px;"
+         data-markers= "<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
     </div>
   </div>
