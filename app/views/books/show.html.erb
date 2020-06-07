@@ -3,9 +3,6 @@
     <div class="col-8 d-flex flex-column">
       <div class="book-show-card">
         <div class="d-flex justify-content-between">
-          <div class="mr-3">
-          <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
-          </div>
           <div>
             <h1 class="font-weight-bold"><%= @book.title %></h1>
             <h2 class="font-italic"><%= @book.author %></h2>
@@ -31,19 +28,23 @@
 
         </p>
         <% end %>
-      <button type="button" class="m-3 btn btn-outline-dark" data-toggle="modal" data-target="#AddReview">
+      <button type="button" class="m-3 btn btn-outline-dark float-right" data-toggle="modal" data-target="#AddReview">
         Ajouter un commentaire
       </button>
       </div>
     </div>
     <div class="col-4 d-flex flex-column">
-      <div class="book-show-card">
 
-        <p> <strong> ⭐️ Ratings : </strong> <%= @book.rating %></p>
-        <p> <strong> 📕 Publisher : </strong> <%= @book.publisher %></p>
-        <p> <strong> 📚 Category : </strong> <%= @book.category %></p>
-        <p> <strong> 💁 Lender : </strong> <%= @book.lender.first_name %></p>
-        <P> <strong> 📌 Where to pick the book :</strong> <%=  @book.address %> </P>
+      <div class="book-show-card">
+        <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
+
+        <div class="mt-3">
+          <p><strong> ⭐️ Ratings : </strong> <%= @book.rating %></p>
+          <p><strong> 📕 Publisher : </strong> <%= @book.publisher %></p>
+          <p><strong> 📚 Category : </strong> <%= @book.category %></p>
+          <p><strong> 💁 Lender : </strong> <%= @book.lender.first_name %></p>
+          <P><strong> 📌 Where to pick the book :</strong> <%= @book.address %></p>
+        </div>
 
         <% if policy(@book).destroy? %>
           <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
@@ -56,10 +57,9 @@
         <%= simple_form_for [@book, @booking] do |f|%>
         <%= f.input :begin_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_start"} %>
         <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: "range_end"} %>
-        <%= f.button :submit, "Réserver " ,class: "btn btn-dark" %>
+        <%= f.button :submit, "Réserver", class: "btn btn-outline-dark float-right mt-2" %>
         <% end %>
       </div>
-
       <div class="book-show-card" id="map" style= "width: 100%; height: 300px;"
          data-markers= "<%= @markers.to_json %>"
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -70,19 +70,3 @@
 </div>
 
 <%= render "reviews/new_form_modal", book: @book, review: Review.new, id: "AddReview" %>
-
-<!-- <div class="modal fade" id="AddReview" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="reviewModalTitle">Add a new Review to <%= @book.title %></h5>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@book, Review.new] do |f| %>
-        <%= f.input :content %>
-        <%= f.button :submit, class: "btn btn-outline-dark" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div> -->
