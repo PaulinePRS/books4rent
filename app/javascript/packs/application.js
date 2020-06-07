@@ -33,11 +33,15 @@ import {initAutocomplete} from  '../plugins/init_autocomplete'
 
 import { fillNewFormWithCurrentPosition } from '../plugins/get_current_position'
 
+import { fetchBooks } from '../plugins/fetch_books'
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  fetchBooks();
   initAutocomplete();
   initFlatPicker();
 
@@ -45,10 +49,13 @@ document.addEventListener('turbolinks:load', () => {
 
   if(map) {
     initMapbox();
-  }
+  };
+
+ fillNewFormWithCurrentPosition();
+
 });
 
-const addressField = document.getElementById('address-field');
 
-addressField.addEventListener("click", fillNewFormWithCurrentPosition);
+
+
 
