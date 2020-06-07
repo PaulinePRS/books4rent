@@ -31,19 +31,31 @@ import { initFlatPicker } from '../plugins/flatpickr'
 
 import {initAutocomplete} from  '../plugins/init_autocomplete'
 
+import { fillNewFormWithCurrentPosition } from '../plugins/get_current_position'
+
+import { fetchBooks } from '../plugins/fetch_books'
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  initAutocomplete()
-  initFlatPicker()
+  fetchBooks();
+  initAutocomplete();
+  initFlatPicker();
 
   const map = document.getElementById('map');
 
   if(map) {
     initMapbox();
-  }
+  };
+
+ fillNewFormWithCurrentPosition();
+
 });
+
+
+
 
 
