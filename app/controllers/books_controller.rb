@@ -7,14 +7,14 @@ class BooksController < ApplicationController
     else
       @books = policy_scope(Book).order(title: :asc)
     end
-      @books = @books.geocoded # returns flats with coordinates
+      @books = @books.geocoded # returns books with coordinates
 
       @markers = @books.map do |book|
         {
           lat: book.latitude,
-          lng: book.longitude
+          lng: book.longitude,
+          infoWindow: render_to_string(partial: "infowindow", locals: { book: book })
         }
-      #@books = policy_scope(Book).order(title: :asc)
     end
 
   end
