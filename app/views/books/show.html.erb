@@ -60,9 +60,9 @@
         <%= f.button :submit, "Réserver", class: "btn btn-outline-dark float-right mt-2" %>
         <% end %>
       </div>
-      <div class="book-show-card" id="map" style= "width: 100%; height: 300px;"
-         data-markers= "<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div id="map" style= "width: 100%; height: 300px;"
+           data-markers= "<%= @markers.to_json %>"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
     </div>
