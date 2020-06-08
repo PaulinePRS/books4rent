@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   def index
     if params[:query]
       key = "%#{params[:query]}%"
-      @books = policy_scope(Book).where("title ILIKE :search OR author ILIKE :search OR description ILIKE :search", search: key).order(title: :asc)
+      @books = policy_scope(Book).where("title @@ :search OR author @@ :search OR description @@ :search", search: key).order(title: :asc)
     else
       @books = policy_scope(Book).order(title: :asc)
     end
