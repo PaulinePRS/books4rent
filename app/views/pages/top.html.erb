@@ -1,0 +1,22 @@
+<div class="container mt-3">
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card-style">
+          <div class="cover-style">
+            <%= link_to book_path(book) do %>
+              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
+              </div>
+              <h1> <%= book.title %></h1>
+              <% if policy(book).update? %>
+
+                <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>  Edit <% end %>
+
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>

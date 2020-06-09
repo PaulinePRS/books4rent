@@ -6,4 +6,8 @@ class PagesController < ApplicationController
     @books = policy_scope(Book).sample(8)
   end
 
+  def top
+    @books = policy_scope(Book).sample(8)
+  end
+
 end
