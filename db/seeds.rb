@@ -98,7 +98,7 @@ while i < isbn.size
 
   # initialize and save book in the db
 
-  book = Book.create!(
+  book = Book.new(
     title: title,
     author: author,
     description: description,
@@ -122,6 +122,8 @@ while i < isbn.size
     file = URI.open(url)
     book.photo.attach(io: file, filename: "photo_#{book.id}", content_type: "image/jpg")
   end
+
+  book.save!
 
   # render book details in the console
 
