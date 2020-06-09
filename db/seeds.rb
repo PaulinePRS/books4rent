@@ -1,17 +1,20 @@
 # # This file should contain all the record creation needed to seed the database with its default values.
 # # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-# #
-# # Examples:
-# #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
+
 require 'json'
 require 'open-uri'
 require 'faker'
 
+
+puts "Cleaning db ..."
+
 Review.destroy_all
 Book.destroy_all
 User.destroy_all
+Review.destroy_all
+Booking.destroy_all
+
+puts "Done !"
 
 users = [
   {email: 'pauline@lewagon.org', first_name: 'Pauline', last_name: 'Paris', address: Faker::Address.full_address, password: 'pauline'},
@@ -90,8 +93,11 @@ while i < isbn.size
   publisher = hash_book['items'].first['volumeInfo']['publisher'] || "undefined"
   category = hash_book['items'].first['volumeInfo']['categories'].first || "undefined"
 
-  # Create fake address:
-  address = ['1 rue ravignan, 75018 PARIS', '31 rue de citeaux, 75012 PARIS', '20 avenue du president kennedy, 75016, PARIS']
+  # create fake address
+
+  address = Geocoder.search([48.837654 + 4.times.map { rand(9) }.join.to_i.fdiv(100000),
+                             2.3122210 + 4.times.map { rand(9) }.join.to_i.fdiv(100000)])
+                    .first.address
 
   # initialize and save book in the db
 
@@ -104,7 +110,7 @@ while i < isbn.size
     publisher: publisher,
     category: category,
     lender: User.all.sample,
-    address: address.sample
+    address: address
   )
 
   # attach cover to book
@@ -121,6 +127,7 @@ while i < isbn.size
     file = URI.open(url)
     book.photo.attach(io: file, filename: "photo_#{book.id}", content_type: "image/jpg")
   end
+
   # render book details in the console
 
   puts "____________________________________________________________
@@ -135,8 +142,6 @@ while i < isbn.size
         address: #{book.address}"
   puts "____________________________________________________________"
 end
-
-puts "Cleaning Review database ..."
 
 Book.all.each do |book|
   (5..10).to_a.sample.times do
