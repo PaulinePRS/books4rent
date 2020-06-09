@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def top
-    @books = policy_scope(Book).sample(8)
+    @books = policy_scope(Book).where(rating: "5").limit(8)
   end
 
 end
