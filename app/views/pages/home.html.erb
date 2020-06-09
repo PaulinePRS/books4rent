@@ -13,28 +13,59 @@
   </div>
 </div>
 
-<h2 class="text-center font-weight-bold p-5">A selection of what you can read</h2>
+<h2 class="text-center font-weight-bold p-5">Do you love fiction ?</h2>
 
 <div class="container mt-3">
-  <div class="row">
-    <% @books.each do |book| %>
+  <div class=" d-flex justify-content-around">
+    <% @books_cat1.each do |book| %>
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-style">
-          <div class="cover-style">
+        <div class="hover card-style">
             <%= link_to book_path(book) do %>
               <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
               </div>
-              <h1> <%= book.title %></h1>
-              <% if policy(book).update? %>
+              <h1 class="p-4"> <%= book.title %></h1>
 
-                <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>  Edit <% end %>
-
-              <% end %>
             <% end %>
-          </div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
+
+<h2 class="text-center font-weight-bold p-5">Social Science, for a deep lecture</h2>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-around">
+    <% @books_cat2.each do |book| %>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="hover card-style">
+            <%= link_to book_path(book) do %>
+              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
+              </div>
+              <h1 class="p-4"> <%= book.title %></h1>
+
+            <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
+</div>
+
+<h2 class="text-center font-weight-bold p-5">Some Classics..</h2>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-around">
+    <% @books_cat3.each do |book| %>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="hover card-style">
+            <%= link_to book_path(book) do %>
+              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
+              </div>
+              <h1 class="p-4"> <%= book.title %></h1>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
