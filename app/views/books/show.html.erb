@@ -19,7 +19,7 @@
               <p>
                 <%=  review.content %>
                  <% if policy(review).update? %>
-               <button type="button" class="m-3 btn btn-light border-bottom data-toggle="modal"  data-target="#EditReview<%= review.id %>">
+              <button type="button" class="m-3 btn btn-light border-bottom" data-toggle="modal" data-target="#EditReview<%= review.id %>">
                 <i> 📝 </i>
               </button>
               <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
@@ -51,6 +51,7 @@
     <div class="col-4 d-flex flex-column">
 
       <div class="book-show-card">
+
         <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
 
         <div class="mt-3">
