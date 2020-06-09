@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'top', to: 'pages#top'
   resources :books do
     resources :reviews, only: [:new, :create]
     resources :bookings, only: [:new, :create]
