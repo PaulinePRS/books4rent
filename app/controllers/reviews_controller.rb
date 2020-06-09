@@ -12,9 +12,11 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
+      update_ratings(@book)
+
       redirect_to book_path(@book)
     else
-      render :new
+      redirect_to book_path(@book)
     end
   end
 
@@ -35,10 +37,23 @@ class ReviewsController < ApplicationController
     redirect_to book_path(@review.book)
   end
 
+
   private
 
+   def update_ratings(book)
+    sum = 0
+    book.reviews.each do |review|
+      if review.ratings
+        sum += review.ratings
+      end
+    end
+    book.rating = sum/book.reviews.size
+    book.save!
+  end
+
+
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:content, :ratings)
   end
 
   def set_review

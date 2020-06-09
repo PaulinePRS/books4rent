@@ -16,14 +16,30 @@
         <p>
 
           <div class="d-flex flex-column">
-            <%= review.content %>
-            <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
-            <% if policy(review).update? %>
-               <button type="button" class="m-3 btn btn-light border-bottom data-toggle="modal" data-target="#EditReview<%= review.id %>">
-                <i> Modifier 📝 </i>
+            <div class="d-flex justify-content-between">
+              <p>
+                <%=  review.content %>
+                 <% if policy(review).update? %>
+               <button type="button" class="m-3 btn btn-light border-bottom data-toggle="modal"  data-target="#EditReview<%= review.id %>">
+                <i> 📝 </i>
               </button>
               <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
             <% end %>
+              </p>
+              <p>
+                  <% if review.ratings %>
+                    <% review.ratings.times do %>
+                      <span><i class="fas fa-star text-warning"> </i></span>
+                    <% end %>
+                    <% (5- review.ratings).times do %>
+                      <span> <i class="far fa-star text-warning"> </i></span>
+                    <% end %>
+                  <% end %>
+              </p>
+            </div>
+
+            <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
+
           </div>
 
         </p>
