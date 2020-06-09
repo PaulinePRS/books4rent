@@ -8,4 +8,8 @@ class PagesController < ApplicationController
     @books_cat3 = policy_scope(Book).where(category: "Literary Collections").limit(4)
   end
 
+  def top
+    @books = policy_scope(Book).where(rating: "5").limit(8)
+  end
+
 end
