@@ -57,7 +57,6 @@ isbn = %w(9781781101032
           2226431438
           2226425675
           2714449867
-          2714449921
           2714449948
           2714452035
           2742798234
@@ -86,11 +85,9 @@ while i < isbn.size
   hash_book = JSON.parse(book_serialized)
   title = hash_book['items'].first['volumeInfo']['title'] || "undefined"
   author = hash_book['items'].first['volumeInfo']['authors'].first.split.map {|word| word.capitalize}.join(" ") || "undefined"
-  published_date = hash_book['items'].first['volumeInfo']['publishedDate'].to_i || "undefined"
   description = hash_book['items'].first['volumeInfo']['description'] || "undefined"
   rating = hash_book['items'].first['volumeInfo']['averageRating'] || [3, 3.5, 4, 4.5, 5].sample
   rating =  rating.to_i if rating.class == String
-  publisher = hash_book['items'].first['volumeInfo']['publisher'] || "undefined"
   category = hash_book['items'].first['volumeInfo']['categories'].first || "undefined"
 
   # create fake address
@@ -101,13 +98,11 @@ while i < isbn.size
 
   # initialize and save book in the db
 
-  book = Book.create!(
+  book = Book.new(
     title: title,
     author: author,
-    published_date: published_date,
     description: description,
     rating: rating,
-    publisher: publisher,
     category: category,
     lender: User.all.sample,
     address: address
@@ -128,15 +123,15 @@ while i < isbn.size
     book.photo.attach(io: file, filename: "photo_#{book.id}", content_type: "image/jpg")
   end
 
+  book.save!
+
   # render book details in the console
 
   puts "____________________________________________________________
         title: #{title}
         author: #{author}
-        published date: #{published_date}
         description: #{description}
         rating: #{rating}
-        publisher: #{publisher}
         category: #{category}
         lender: #{book.lender.email}
         address: #{book.address}"
