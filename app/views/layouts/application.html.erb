@@ -32,6 +32,11 @@
           <li class="nav-item mr-4">
             <%= link_to " 👌 Top Books ", books_path, class: "nav-link"%>
           </li>
+          <% if current_user %>
+          <li class="nav-item mr-4">
+            <%= link_to "My Books", user_path(current_user), class: "nav-link" %>
+          </li>
+          <% end %>
           <li class="nav-item dropdown">
             <%= image_tag("pauline.jpg", id: "navbarDropdown", class: "avatar dropdown-toggle", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}) %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
