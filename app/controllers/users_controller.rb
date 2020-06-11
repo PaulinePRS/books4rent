@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
-    @user == current_user
-    @books = @user.books
-    authorize @user
+    @books = current_user.books
+    authorize current_user
   end
 end
