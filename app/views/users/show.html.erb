@@ -56,33 +56,21 @@
                   <h1><%= booking.book.title %></h1>
                   <p class="text-secondary mb-0"> <strong>Begin date:</strong> <%= booking.begin_date.strftime("%e %B %Y") %></p>
                   <p class="text-secondary"> <strong>End date:</strong> <%= booking.end_date.strftime("%e %B %Y") %></p>
+                  <% end %>
+                  <%= simple_form_for(booking.book.lender) do |f| %>
+                    <%= f.input :rating, label: false, collection: [1, 2, 3, 4, 5] %>
+                    <%= f.button :submit, 'rate the service!', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
+                  <% end %>
                 <% end %>
-                <% end %>
+
               </div>
             </div>
           </div>
         <% end %>
+
+
       </div>
     </div>
-     <!-- <div class="container mt-4">
-       <div class="row">
-         <div class="col-6">
-            <% if @bookings.empty? %>
-              <p>
-                You don't have any reservation
-              </p>
-            <% else %>
-             <% @bookings.each do |booking| %>
-           <div class="book-show-card">
-               <p><%= booking.book.title %></p>
-               <p><%= booking.begin_date %></p>
-               <p><%= booking.end_date %></p>
-           </div>
-             <% end %>
-             <% end %>
-         </div>
-       </div>
-     </div> -->
    </div>
 
    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">

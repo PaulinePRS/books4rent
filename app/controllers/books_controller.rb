@@ -26,6 +26,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @booking = Booking.new
     authorize @book
+    @user = current_user
   end
 
   def new
