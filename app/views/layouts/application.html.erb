@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <script src="8bit.js"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
@@ -20,8 +20,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto align-items-center">
           <li class="nav-item">
@@ -32,7 +30,7 @@
           <li class="nav-item mr-4">
             <%= link_to " 👌 Top Books ", books_path, class: "nav-link"%>
           </li>
-          <% if current_user %>
+          <% if policy(current_user).show? %>
           <li class="nav-item mr-4">
             <%= link_to "My Books", user_path(current_user), class: "nav-link" %>
           </li>
