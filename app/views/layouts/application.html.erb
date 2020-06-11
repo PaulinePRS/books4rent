@@ -30,7 +30,7 @@
           <li class="nav-item mr-4">
             <%= link_to " 👌 Top Books ", books_path, class: "nav-link"%>
           </li>
-          <% if policy(current_user).show? %>
+          <% if current_user %>
           <li class="nav-item mr-4">
             <%= link_to "My Books", user_path(current_user), class: "nav-link" %>
           </li>
