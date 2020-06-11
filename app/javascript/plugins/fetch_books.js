@@ -11,15 +11,11 @@ const fetchBooks = () => {
         .then((data) => {
           const titleInput = document.getElementById('book_title');
           const authorInput = document.getElementById('book_author');
-          const publisherInput = document.getElementById('book_publisher');
           const ratingInput = document.getElementById('book_rating');
-          const publishedDateInput = document.getElementById('book_published_date');
           const descriptionInput = document.getElementById('book_description');
           titleInput.value = data['items'][0]['volumeInfo']['title'];
           authorInput.value = data['items'][0]['volumeInfo']['authors'][0];
-          publisherInput.value = data['items'][0]['volumeInfo']['publisher'];
           ratingInput.value = data['items'][0]['volumeInfo']['averageRating'];
-          publishedDateInput.value = data['items'][0]['volumeInfo']['publishedDate'];
           descriptionInput.value = data['items'][0]['volumeInfo']['description'];
         });
     });
