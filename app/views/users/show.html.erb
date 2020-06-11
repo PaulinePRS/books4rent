@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+        <% @books.each do |book| %>
+      <div class="book-show-card">
+          <%= book.title %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
