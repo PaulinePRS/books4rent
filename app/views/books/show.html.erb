@@ -58,8 +58,11 @@
     <div class="col-4 d-flex flex-column">
 
       <div class="book-show-card">
-
-        <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
+        <% if @book.photo.attached? %>
+          <%= cl_image_tag @book.photo.key, height: 200, crop: :fill %>
+        <% else %>
+          <%= image_tag @book.cover_url %>
+        <% end %>
 
         <div class="mt-3">
           <p><strong> ⭐️ Ratings : </strong> <%= @book.rating %></p>
