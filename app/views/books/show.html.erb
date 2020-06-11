@@ -7,23 +7,23 @@
             <h1 class="font-weight-bold"><%= @book.title %></h1>
             <h2 class="font-italic"><%= @book.author %></h2>
           </div>
+          <div>
+            <% if policy(@book).update? %>
+              <%= link_to edit_book_path(@book) do %>
+              <i> 📝 </i>
+              <% end %>
+              <% end %>
+          </div>
         </div>
         <p class="pt-3"> 👉 <%= @book.description %></p>
       </div>
       <div class="book-show-card">
         <% @book.reviews.each do |review| %>
         <p>
-
           <div class="d-flex flex-column">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-start">
               <p>
                 <%=  review.content %>
-                 <% if policy(review).update? %>
-              <button type="button" class="m-3 btn btn-light border-bottom" data-toggle="modal" data-target="#EditReview<%= review.id %>">
-                <i> 📝 </i>
-              </button>
-              <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
-            <% end %>
               </p>
               <p>
                   <% if review.ratings %>
@@ -36,9 +36,16 @@
                   <% end %>
               </p>
             </div>
+            <div class="d-flex justify-content-between align-items-start">
 
             <footer class="blockquote-footer text-left mb-1"><%= review.user.first_name %></footer>
-
+              <% if policy(review).update? %>
+              <a class="" data-toggle="modal" data-target="#EditReview<%= review.id %>">
+                <i> 📝 </i>
+              </a>
+              <%= render "reviews/edit_form_modal", review: review, id: "EditReview#{review.id}" %>
+              <% end %>
+            </div>
           </div>
 
         </p>
