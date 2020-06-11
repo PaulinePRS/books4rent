@@ -4,6 +4,9 @@ class BooksController < ApplicationController
     if params[:query]
       key = "%#{params[:query]}%"
       @books = policy_scope(Book).where("title @@ :search OR author @@ :search OR description @@ :search", search: key).order(title: :asc)
+        if @books.empty?
+           redirect_to root_path, alert: 'This book doesnt exist!'
+        end
     else
       @books = policy_scope(Book).order(title: :asc)
     end

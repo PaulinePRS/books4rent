@@ -30,6 +30,10 @@
           <li class="nav-item mr-4">
             <%= link_to " 👌 Top Books ", top_path, class: "nav-link"%>
           </li>
+
+          <li class="nav-item mr-4">
+            <%= link_to " 📚 All Books ", books_path, class: "nav-link"%>
+          </li>
           <li class="nav-item dropdown">
             <%= image_tag("pauline.jpg", id: "navbarDropdown", class: "avatar dropdown-toggle", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}) %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -46,7 +50,7 @@
     <%= yield %>
 
 
-  <div class="footer shadow-sm p-3 bg-white rounded">
+  <div class="footer shadow-sm rounded">
       <div class="footer-links">
         <a href="#"><i class="fab fa-github"></i></a>
         <a href="#"><i class="fab fa-linkedin"></i></a>
