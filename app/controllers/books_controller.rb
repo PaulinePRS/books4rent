@@ -33,7 +33,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.lender = current_user
-    if @book.save
+    if @book.save!
       redirect_to book_path(@book)
     else
       render :new

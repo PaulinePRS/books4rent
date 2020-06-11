@@ -14,5 +14,7 @@
   <%= f.input :description, label: "Summary" %>
   <%= f.input :address, label: "Location where to get the book? 📌" %>
   <%= f.input :cover_url, as: :hidden %>
+  <%= f.file_field :photo %>
   <%= f.button :submit, 'Lend book', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
+  <img src="" alt="" id="cover">
 <% end %>
