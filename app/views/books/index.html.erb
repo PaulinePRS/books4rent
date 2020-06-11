@@ -5,16 +5,21 @@
         <div class="col-3">
           <div class="card-style">
             <%= link_to book_path(book) do %>
-              <div class="card-img-thumbnail" style='background-image: url("<%= cl_image_path(book.photo.key, height: 300, width: 250, crop: :fill) %>")'>
+              <div class="card-img-thumbnail" %>
+                <% if book.photo.attached? %>
+                  <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+                <% else %>
+                  <%= image_tag book.cover_url, height: 250, width: 200 %>
+                <% end %>
               </div>
             <% end %>
             <div class="p-2 mt-4">
               <%= link_to book_path(book) do %>
                 <h1><%= book.title %></h1>
                 <div>
-                  <% book.rating.times do %>
+                  <%# book.rating.times do %>
                     <span>⭐️</span>
-                  <% end %>
+                  <%# end %>
                 </div>
               <% end %>
             </div>
