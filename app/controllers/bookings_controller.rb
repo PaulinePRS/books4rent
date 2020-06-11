@@ -13,7 +13,6 @@ class BookingsController < ApplicationController
     @booking.save
 
     redirect_to book_path(@book), notice: "You've successfully booked #{@book.title}"
-
   end
 
 private
