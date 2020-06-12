@@ -70,12 +70,6 @@
           <p><strong> 💁 Lender : </strong> <%= @book.lender.first_name %></p>
           <P><strong> 📌 Where to pick the book :</strong> <%= @book.address %></p>
         </div>
-
-        <% if policy(@book).destroy? %>
-          <%= link_to book_path(@book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
-            <i class="fa fa-trash destroy_dose"></i>
-          <% end %>
-        <% end %>
       </div>
 
       <div class="book-show-card">

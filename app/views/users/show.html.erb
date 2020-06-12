@@ -18,26 +18,37 @@
         <% @books.each do |book| %>
           <div class="col-3">
             <div class="card-style">
-              <div class="card-img-thumbnail">
-                <% if book.photo.attached? %>
-                  <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
-                <% else %>
-                  <%= image_tag book.cover_url, height: 250, width: 200 %>
-                <% end %>
-              </div>
+              <%= link_to book_path(book) do %>
+                <div class="card-img-thumbnail">
+                  <% if book.photo.attached? %>
+                    <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+                  <% else %>
+                    <%= image_tag book.cover_url, height: 250, width: 200 %>
+                  <% end %>
+                </div>
+              <% end %>
               <div class="d-flex justify-content-around align-items-center flex-column">
                 <div>
                   <%= link_to book_path(book) do %>
                     <h1><%= book.title %></h1>
                   <% end %>
                 </div>
-                <div>
-                  <% if policy(book).update? %>
-                    <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>
-                      <i class="fas fa-edit"></i>
+                <div class="d-flex w-100 justify-content-around">
+                  <div>
+                    <% if policy(book).update? %>
+                      <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>
+                        <i class="fas fa-edit"></i>
+                      <% end %>
                     <% end %>
+                  </div>
+                  <div>
+                    <% if policy(book).destroy? %>
+                      <%= link_to book_path(book), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
+                        <i class="fa fa-trash destroy_dose"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
-                <% end %>
               </div>
             </div>
           </div>
