@@ -2,35 +2,28 @@
   <div class="container mx-4">
     <div class="row">
       <% @books.each do |book| %>
-        <div class="col-3">
-          <div class="card-style">
+      <div class="col-3">
+        <div class="card-style">
+          <div class="card-img-thumbnail">
+            <% if book.photo.attached? %>
+              <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
             <%= link_to book_path(book) do %>
-              <div class="card-img-thumbnail">
-                <% if book.photo.attached? %>
-                  <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
-                <% else %>
-                  <%= image_tag book.cover_url, height: 250, width: 200 %>
-                <% end %>
-              </div>
+            <% else %>
+              <%= image_tag book.cover_url, height: 250, width: 200 %>
             <% end %>
-            <div class="p-2 mt-4">
-              <%= link_to book_path(book) do %>
-                <h1><%= book.title %></h1>
-                <div>
-                  <%# book.rating.times do %>
-                    <span>⭐️</span>
-                  <%# end %>
-                </div>
-              <% end %>
-            </div>
+          </div>
+          <h1><%= book.title %></h1>
+          <div class="p-2 mt-4">
+            <% end %>
           </div>
         </div>
+      </div>
       <% end %>
     </div>
   </div>
   <div class="map-container">
     <div id="map"
-         style="width: 100%; height: 50vh;"
+         style="width: 100%; height: 100vh;"
          data-markers="<%= @markers.to_json %>"
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
