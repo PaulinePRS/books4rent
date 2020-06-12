@@ -23,9 +23,18 @@
                   <%= image_tag book.cover_url, height: 250, width: 200 %>
                 <% end %>
               </div>
-              <div class="p-2 mt-4">
-                <%= link_to book_path(book) do %>
-                  <h1><%= book.title %></h1>
+              <div class="d-flex justify-content-around align-items-center flex-column">
+                <div>
+                  <%= link_to book_path(book) do %>
+                    <h1><%= book.title %></h1>
+                  <% end %>
+                </div>
+                <div>
+                  <% if policy(book).update? %>
+                    <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                </div>
                 <% end %>
               </div>
             </div>
@@ -90,7 +99,7 @@
          <p><strong>Email address:</strong> <%= @user.email %></p>
          <p><strong>Address:</strong> <%= @user.address %></p>
          <p><strong>Your rating:</strong> <%= @user.address %></p>
-         <%= link_to "Change my informations", edit_user_registration_path%>
+         <%= link_to "Change my informations", edit_user_registration_path %>
        </div>
      </div>
    </div>
