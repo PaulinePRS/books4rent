@@ -15,6 +15,13 @@ class BookingsController < ApplicationController
     redirect_to book_path(@book), notice: "You've successfully booked #{@book.title}"
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.destroy
+    redirect_to user_path(@booking.user)
+  end
+
 private
 
   def booking_params
