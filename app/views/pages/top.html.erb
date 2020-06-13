@@ -1,17 +1,37 @@
 <h2 class="text-center font-weight-bold p-5">Our top 8 books</h2>
 
-<div class="container mt-3">
-  <div class="row">
-    <% @books.each do |book| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-style">
+
+  <div class="container">
+    <div class="row">
+      <% @books.each do |book| %>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card-style grow">
             <%= link_to book_path(book) do %>
-              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
-              </div>
-              <h1 class="p-3"> <%= book.title %></h1>
-            <% end %>
+            <div class="card-img-thumbnail">
+              <% if book.photo.attached? %>
+                <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+              <% else %>
+                <%= image_tag book.cover_url, height: 250, width: 200 %>
+              <% end %>
+            </div>
+            <div>
+              <h1><%= book.title %></h1>
+            </div>
+            <p class="text-center"><small>
+              <% if book.rating %>
+                <% book.rating.times do %>
+                  <span><i class="fas fa-star text-warning"> </i></span>
+                <% end %>
+                <% (5- book.rating).times do %>
+                  <span> <i class="far fa-star text-warning"> </i></span>
+                <% end %>
+              <% end %>
+
+            </small>
+            </p>
+          </div>
+          <% end %>
         </div>
-      </div>
-    <% end %>
-  </div>
-  </div>
+      <% end %>
+    </div>
+
