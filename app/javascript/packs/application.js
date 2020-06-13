@@ -45,11 +45,11 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initFlatPicker();
 
-  const map = document.getElementById('map');
+  // const map = document.getElementById('map');
 
-  if(map) {
+  // if(map) {
     initMapbox();
-  };
+  // };
 
  fillNewFormWithCurrentPosition();
 

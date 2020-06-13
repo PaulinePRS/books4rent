@@ -25,6 +25,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @booking = Booking.new
+    @markers = [{lat: @book.latitude, lng: @book.longitude, infoWindow: render_to_string(partial: "infowindow", locals: { book: @book }) }]
     authorize @book
   end
 
