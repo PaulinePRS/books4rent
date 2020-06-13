@@ -1,2 +1,9 @@
 // Specific CSS for your home-page
 
+.grow {
+transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+transform: scale(1.1);
+}

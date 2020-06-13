@@ -19,7 +19,7 @@
   <div class=" d-flex justify-content-around">
     <% @books_cat1.each do |book| %>
     <div class="col-3">
-      <div class="card-style">
+      <div class="card-style grow">
         <div class="card-img-thumbnail">
           <% if book.photo.attached? %>
             <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
@@ -44,7 +44,7 @@
   <div class="d-flex justify-content-around">
     <% @books_cat2.each do |book| %>
     <div class="col-3">
-      <div class="card-style">
+      <div class="card-style grow">
         <div class="card-img-thumbnail">
           <% if book.photo.attached? %>
             <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
@@ -69,7 +69,7 @@
   <div class="d-flex justify-content-around">
     <% @books_cat3.each do |book| %>
     <div class="col-3">
-      <div class="card-style">
+      <div class="card-style grow">
         <div class="card-img-thumbnail">
           <% if book.photo.attached? %>
             <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
