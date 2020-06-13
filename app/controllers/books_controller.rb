@@ -27,6 +27,7 @@ class BooksController < ApplicationController
     @booking = Booking.new
     @markers = [{lat: @book.latitude, lng: @book.longitude, infoWindow: render_to_string(partial: "infowindow", locals: { book: @book }) }]
     authorize @book
+    @user = current_user
   end
 
   def new
