@@ -9,7 +9,9 @@
      <a class="nav-link text-secondary" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">My informations</a>
    </li>
 </ul>
+
 <div class="tab-content" id="myTabContent">
+
   <div class="tab-pane fade show active" id="mybooks" role="tabpanel" aria-labelledby="home-tab">
     <div class="container ">
       <div class="row mt-5 d-flex justify-content-around">
@@ -32,6 +34,7 @@
                   <% end %>
                 </div>
                 <div class="d-flex w-100 justify-content-around">
+
                   <div>
                     <% if policy(book).update? %>
                       <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>
@@ -46,6 +49,7 @@
                       <% end %>
                     <% end %>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -54,6 +58,7 @@
       </div>
     </div>
   </div>
+
   <div class="tab-pane fade" id="mybookings" role="tabpanel" aria-labelledby="profile-tab">
     <div class="container">
       <div class="row mt-5 d-flex justify-content-around">
@@ -81,10 +86,12 @@
                         <strong>End date:</strong><%= booking.end_date.strftime("%e %B %Y") %>
                       </p>
                     <% end %>
+
                     <%= simple_form_for(booking.book.lender) do |f| %>
                     <%= f.input :rating, label: false, collection: [1, 2, 3, 4, 5] %>
                     <%= f.button :submit, 'rate the service!', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
                   <% end %>
+
                   </div>
                 </div>
               </div>
@@ -94,6 +101,7 @@
       </div>
     </div>
   </div>
+
    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
      <div class="container mt-4">
       <div class="row mt-5 d-flex justify-content-around">
@@ -108,6 +116,7 @@
            <strong>Address: </strong><%= @user.address %>
           </p>
           <p>
+
            <strong>Your rating: </strong><%= @user.rating %>
 
           </p>
@@ -116,4 +125,5 @@
       </div>
      </div>
    </div>
+
 </div>

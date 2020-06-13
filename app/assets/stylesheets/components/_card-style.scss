@@ -8,17 +8,24 @@ a:hover {
   text-align: center;
   margin-bottom: 30px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  height: 420px;
+  height: 400px;
+  width: 200px;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infos-container {
 }
 
 .card-style h1 {
   font-size: 15px;
   font-weight: bold;
   color: #1F999D;
+  padding: 10px;
 }
 
-.card-img-thumbnail {
+.card-img-thumbnail img {
   background-size: cover;
   background-position: center;
   height: 300px;
@@ -27,3 +34,4 @@ a:hover {
 .card-style:hover {
   background-color: #E5F9F5;
 }
+

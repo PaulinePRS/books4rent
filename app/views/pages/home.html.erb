@@ -6,7 +6,7 @@
         <div class="searchbar d-flex my-5">
           <form action="/books" method="get" class="form-inline my-lg-0 "> 
             <input class="form-control mr-sm-2 element" placeholder="Harry Potter, Musso ..." name="query" type="search" aria-label="Search"> 
-          <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button> 
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button> 
           </form> 
         </div>
     </div>
@@ -18,16 +18,22 @@
 <div class="container mt-3">
   <div class=" d-flex justify-content-around">
     <% @books_cat1.each do |book| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-style">
-            <%= link_to book_path(book) do %>
-              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
-              </div>
-              <h1 class="p-4"> <%= book.title %></h1>
-
-            <% end %>
+    <div class="col-3">
+      <div class="card-style">
+        <div class="card-img-thumbnail">
+          <% if book.photo.attached? %>
+            <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+          <% else %>
+            <%= image_tag book.cover_url, height: 250, width: 200 %>
+          <% end %>
+        </div>
+        <div class="p-2 mt-4">
+          <%= link_to book_path(book) do %>
+            <h1><%= book.title %></h1>
+          <% end %>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
 </div>
@@ -37,34 +43,47 @@
 <div class="container mt-3">
   <div class="d-flex justify-content-around">
     <% @books_cat2.each do |book| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-style">
-            <%= link_to book_path(book) do %>
-              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
-              </div>
-              <h1 class="p-4"> <%= book.title %></h1>
-
-            <% end %>
+    <div class="col-3">
+      <div class="card-style">
+        <div class="card-img-thumbnail">
+          <% if book.photo.attached? %>
+            <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+          <% else %>
+            <%= image_tag book.cover_url, height: 250, width: 200 %>
+          <% end %>
+        </div>
+        <div class="p-2 mt-4">
+          <%= link_to book_path(book) do %>
+            <h1><%= book.title %></h1>
+          <% end %>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
 </div>
 
-<h2 class="text-center font-weight-bold p-5">Some Classics..</h2>
+<h2 class="text-center font-weight-bold p-5">Some Classics...</h2>
 
 <div class="container mt-3">
   <div class="d-flex justify-content-around">
     <% @books_cat3.each do |book| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-style">
-            <%= link_to book_path(book) do %>
-              <div style='background-size: cover; background-position: center; height: 300px; width: 100%; background-image: url("<%= cl_image_path(book.photo.key) %>")'>
-              </div>
-              <h1 class="p-4"> <%= book.title %></h1>
-            <% end %>
+    <div class="col-3">
+      <div class="card-style">
+        <div class="card-img-thumbnail">
+          <% if book.photo.attached? %>
+            <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+          <% else %>
+            <%= image_tag book.cover_url, height: 250, width: 200 %>
+          <% end %>
+        </div>
+        <div class="p-2 mt-4">
+          <%= link_to book_path(book) do %>
+            <h1><%= book.title %></h1>
+          <% end %>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
 </div>
