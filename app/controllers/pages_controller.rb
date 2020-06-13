@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def top
     @books = policy_scope(Book).order(rating: :desc).limit(8)
+    @books = @books.where.not(rating: nil)
   end
 
 end
