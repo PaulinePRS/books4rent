@@ -30,9 +30,7 @@ class BooksController < ApplicationController
       lng: @book.longitude,
       infoWindow: render_to_string(partial: "infowindow", locals: { book: @book })
     }]
-
     authorize @book
-    @user = current_user
   end
 
   def new
@@ -82,7 +80,7 @@ class BooksController < ApplicationController
 
   def book_params
 
-    params.require(:book).permit(:title, :author, :rating, :category, :cover_url, :address, :description)
+    params.require(:book).permit(:title, :author, :rating, :category, :cover_url, :address, :description, :photo)
 
   end
 
