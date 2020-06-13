@@ -15,7 +15,7 @@ const fetchBookCover = (coverUrl) => {
   fetch(coverUrl)
     .then (response => response.json())
     .then ((data) => {
-      const Cover = data['volumeInfo']['imageLinks']['large'];
+      const Cover = data['volumeInfo']['imageLinks']['medium'];
       console.log(Cover);
       const photoInput = document.getElementById('book_cover_url');
       console.log(photoInput);

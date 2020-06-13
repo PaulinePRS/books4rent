@@ -5,32 +5,25 @@
         <div class="col-3">
           <div class="card-style">
             <%= link_to book_path(book) do %>
-              <div class="card-img-thumbnail" %>
-                <% if book.photo.attached? %>
-                  <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
-                <% else %>
-                  <%= image_tag book.cover_url, height: 250, width: 200 %>
-                <% end %>
-              </div>
-            <% end %>
-            <div class="p-2 mt-4">
-              <%= link_to book_path(book) do %>
-                <h1><%= book.title %></h1>
-                <div>
-                  <%# book.rating.times do %>
-                    <span>⭐️</span>
-                  <%# end %>
-                </div>
+            <div class="card-img-thumbnail">
+              <% if book.photo.attached? %>
+                <%= cl_image_tag book.photo.key, height: 250, width: 200 %>
+              <% else %>
+                <%= image_tag book.cover_url, height: 250, width: 200 %>
               <% end %>
             </div>
+            <div>
+              <h1><%= book.title %></h1>
+            </div>
           </div>
+          <% end %>
         </div>
       <% end %>
     </div>
   </div>
   <div class="map-container">
     <div id="map"
-         style="width: 100%; height: 50vh;"
+         style="width: 100%; height: 100vh;"
          data-markers="<%= @markers.to_json %>"
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>

@@ -1,13 +1,4 @@
 <%= simple_form_for(book) do |f| %>
-  <div class="form-group my-3">
-    <label for="book-search">Search book infos</label>
-    <div class="input-group">
-      <input type="text" class="form-control" id="book-search" placeholder="Harry potter and the sorcerer's stone">
-      <div class="input-group-append">
-        <button class="btn btn-outline-success my-2 my-sm-0 mr-2 float-right" id="autocomplete" type="button">Autocomplete</button>
-      </div>
-    </div>
-  </div>
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :category %>
@@ -16,5 +7,4 @@
   <%= f.input :cover_url, as: :hidden %>
   <%= f.file_field :photo %>
   <%= f.button :submit, 'Lend book', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
-  <img src="" alt="" id="cover">
 <% end %>
