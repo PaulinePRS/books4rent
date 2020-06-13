@@ -30,6 +30,7 @@ class BooksController < ApplicationController
       lng: @book.longitude,
       infoWindow: render_to_string(partial: "infowindow", locals: { book: @book })
     }]
+
     authorize @book
   end
 
