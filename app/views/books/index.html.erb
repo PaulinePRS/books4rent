@@ -2,8 +2,8 @@
   <div class="container mx-4">
     <div class="row">
       <% @books.each do |book| %>
-        <div class="col-3">
-          <div class="card-style">
+        <div class="col-4">
+          <div class="card-style grow">
             <%= link_to book_path(book) do %>
             <div class="card-img-thumbnail">
               <% if book.photo.attached? %>
@@ -15,6 +15,18 @@
             <div>
               <h1><%= book.title %></h1>
             </div>
+            <p class="text-center"><small>
+              <% if book.rating %>
+                <% book.rating.times do %>
+                  <span><i class="fas fa-star text-warning"> </i></span>
+                <% end %>
+                <% (5- book.rating).times do %>
+                  <span> <i class="far fa-star text-warning"> </i></span>
+                <% end %>
+              <% end %>
+
+            </small>
+            </p>
           </div>
           <% end %>
         </div>
