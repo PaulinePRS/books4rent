@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_184108) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.string "cover_url"
     t.index ["lender_id"], name: "index_books_on_lender_id"
   end
 
