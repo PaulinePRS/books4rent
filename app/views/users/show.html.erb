@@ -14,7 +14,7 @@
 
   <div class="tab-pane fade show active" id="mybooks" role="tabpanel" aria-labelledby="home-tab">
     <div class="container ">
-      <div class="row mt-5 d-flex justify-content-around">
+      <div class="row mt-5 d-flex justify-content-between">
         <% @books.each do |book| %>
           <div class="col-3">
             <div class="card-style">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="d-flex w-100 justify-content-around">
 
-                  <div>
+                  <div class="text-secondary">
                     <% if policy(book).update? %>
                       <%= link_to edit_book_path(book.id), data: { confirm: "Update #{book.title}?" } do %>
                         <i class="fas fa-edit"></i>
@@ -61,14 +61,22 @@
 
   <div class="tab-pane fade" id="mybookings" role="tabpanel" aria-labelledby="profile-tab">
     <div class="container">
-      <div class="row mt-5 d-flex justify-content-around">
+      <div class="row mt-5 d-flex justify-content-between">
         <% if @bookings.empty? %>
           <p>You don't have any reservation</p>
         <% else %>
           <% @bookings.each do |booking| %>
             <div class="col-3">
-              <div class="card-style">
-                <div class="card-img-thumbnail">
+              <div class="d-flex flex-column container mb-3">
+              <div class="card-style mr-2">
+                <div class="card-img-thumbnail position-relative">
+                <div class="top-right text-secondary">
+                  <% if policy(booking).destroy? %>
+                    <%= link_to booking_path(booking), method: :delete, data: { confirm: "Confirmez-vous la suppression ?" } do %>
+                      <i class="fas fa-times"></i>
+                    <% end %>
+                  <% end %>
+                </div>
                   <% if booking.book.photo.attached? %>
                     <%= cl_image_tag booking.book.photo.key, height: 250, width: 200 %>
                   <% else %>
@@ -78,8 +86,8 @@
                 <div class="d-flex justify-content-around align-items-center flex-column">
                   <div>
                     <%= link_to book_path(booking.book) do %>
-                      <h1><%= booking.book.title %></h1>
-                      <p class="text-secondary mb-0">
+                      <h1 class="mb-0 pb-1"><%= booking.book.title %></h1>
+                      <p class="text-secondary mb-0 mt-0">
                         <strong>Begin date:</strong><%= booking.begin_date.strftime("%e %B %Y") %>
                       </p>
                       <p class="text-secondary">
@@ -87,13 +95,17 @@
                       </p>
                     <% end %>
 
-                    <%= simple_form_for(booking.book.lender) do |f| %>
-                    <%= f.input :rating, label: false, collection: [1, 2, 3, 4, 5] %>
-                    <%= f.button :submit, 'rate the service!', class:"btn btn-outline-success my-2 my-sm-0 mr-2 float-right" %>
-                  <% end %>
 
                   </div>
                 </div>
+              </div>
+              <div>
+                <%= simple_form_for(booking.book.lender) do |f| %>
+                  <%= f.input :rating, label: false, collection: [1, 2, 3, 4, 5] %>
+                  <%= f.button :submit, 'rate the service!', class:"btn btn-outline-secondary" %>
+                <% end %>
+              </div>
+
               </div>
             </div>
           <% end %>

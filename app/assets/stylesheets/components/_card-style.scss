@@ -32,3 +32,10 @@ a:hover {
   background-color: #E5F9F5;
 }
 
+.top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%,-50%);
+  z-index: 100;
+}
