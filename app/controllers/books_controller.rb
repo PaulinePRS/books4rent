@@ -25,7 +25,12 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @booking = Booking.new
-    @markers = [{lat: @book.latitude, lng: @book.longitude, infoWindow: render_to_string(partial: "infowindow", locals: { book: @book }) }]
+    @markers = [{
+      lat: @book.latitude,
+      lng: @book.longitude,
+      infoWindow: render_to_string(partial: "infowindow", locals: { book: @book })
+    }]
+
     authorize @book
     @user = current_user
   end
@@ -38,7 +43,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.lender = current_user
-    if @book.save!
+    if @book.save
       redirect_to book_path(@book)
     else
       render :new
